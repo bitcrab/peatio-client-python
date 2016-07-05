@@ -2,9 +2,6 @@ import time
 import urllib.request
 import urllib.error
 import urllib
-import pickle
-import pprint
-
 
 from lib.client import Client, get_api_path
 
