@@ -148,4 +148,5 @@ res = client.post(get_api_path('multi_orders'), params)
 
 ## Contribute ##
 
+Here it is adpated to yunbi and Python 3.5.1, test proved now it works well - bitcrab
 Pull requests are welcomed
