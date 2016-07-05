@@ -1,57 +1,73 @@
 import time
-import urllib2
+import urllib.request
+import urllib.error
+import urllib
+import pickle
+
+
 from lib.client import Client, get_api_path
 
-client = Client(access_key='your access key', secret_key='your secret key')
+client = Client(access_key='fwrWjuHe6sKJnOdnkvLGHruMXhoKOtE6sI59V49G', secret_key='DVKqRFxxChj2QPq4pKnIQc6ufAKxclt98qteKNNC')
 
 #demo of GET APIs
 
+
+
 #get member info
-print client.get(get_api_path('members'))
+#print (client.get(get_api_path('members'),None, True))
 
 #get markets
-markets =  client.get(get_api_path('markets'))
-print "markets:", markets
+#markets =  client.get(get_api_path('markets'))
+#print ("markets:", markets)
 
 #get tickers of each market
 #market should be specified in url
-print 
-print "tickers in markets"
-for market in markets:
-    print client.get(get_api_path('tickers') % market['id'])
+#print ("tickers in markets")
 
+#print (client.get(get_api_path('tickers') % 'btscny'))
+
+#for market in markets:
+    #print(market)
+    #print(str(market["id"]))
+#    print (client.get(get_api_path('tickers') % market["id"]))
+
+
+#print (client.get(get_api_path('orders'), {'market':'btscny'}, True))
 #get orders of each market
 #market should be specified in params
-print 
-print "orders in markets"
-for market in markets:
-    print client.get(get_api_path('orders'), {'market': market['id']})
+
+#print ("orders in markets")
+#for market in markets:
+#    print (client.get(get_api_path('orders'), {'market': market['id']}, True))
 
 #get order book
-print client.get(get_api_path('order_book'), params={'market': 'btccny'})
+#print (client.get(get_api_path('order_book'), {'market': 'btscny'}, True))
 
 #get tardes
-print client.get(get_api_path('trades'), params={'market': 'btccny'})
+#print (client.get(get_api_path('trades'), {'market': 'btccny'}, True))
 
-#get my trades
-print client.get(get_api_path('my_trades'), params={'market': 'btccny'})
+#print('get my trades')
+#print (client.get(get_api_path('my_trades'), {'market': 'btccny'},True))
 
 #get k line
-print client.get(get_api_path('k'), params={'market': 'btccny'})
+#print (client.get(get_api_path('k'), {'market': 'btccny'}, True))
 
 
 #demo of POST APIs
 #DANGROUS, you better use test account to debug POST APIs
 
-"""
+
+
 markets =  client.get(get_api_path('markets'))
-print markets
+print (markets)
 
-#sell 10 dogecoins at price 0.01
-params = {'market': 'dogcny', 'side': 'sell', 'volume': 10, 'price': 0.01}
+
+#sell 1 BTS at price 0.031
+params = {'market': 'btscny', 'side': 'sell', 'volume': 1, 'price': 0.031}
 res = client.post(get_api_path('orders'), params)
-print res
+#print (pickle.load(res))
 
+"""
 #buy 10 dogecoins at price 0.001
 params = {'market': 'dogcny', 'side': 'buy', 'volume': 10, 'price': 0.001}
 res = client.post(get_api_path('orders'), params)
